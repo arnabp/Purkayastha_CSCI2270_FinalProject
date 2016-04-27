@@ -8,11 +8,15 @@ This program is a *bracket creator*. Using pre-seeded player info, the program c
 
 ### How to Run
 
-To run the program: include a txt file in the directory of the program. To help, a test file "bracket0.txt" is included. The txt file must contain each players name followed by their rank, separated by a comma. Players must be pre-sorted by rank starting from 1. The name of the test file must then be included as a command argument when running the file. All commands are listed in the menu that is displayed when running the program, and select options by inputting a number for the appropriate option.
+To run the program, download the zip of the project, unpack, and navigate to the folder within terminal. Execute with:
+
+<pre><code> ./FinalProject bracket0.txt </code></pre>
+
+For the program to work, include a txt file in the directory of the program. To help, a test file "bracket0.txt" is included. The txt file must contain each players name followed by their rank, separated by a comma. Players must be pre-sorted by rank starting from 1. The name of the test file must then be included as a command argument when running the file. All commands are listed in the menu that is displayed when running the program, and select options by inputting a number for the appropriate option.
 
 ### Dependencies
 
-Program should be compiled using the G++ GNU Compiler. No additional libraries are required.
+No additional libraries are required.
 
 ### System Requirements
 
