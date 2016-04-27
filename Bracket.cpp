@@ -321,6 +321,7 @@ void Bracket::printRound(int roundNumb){
         }
         else player2 = "<no player>";
         cout<<"Match #"<<currentMatch->matchnumber<<": "<<player1<<" vs "<<player2<<endl;
+        currentMatch = currentMatch->forwardMatch;
     }
 }
 
