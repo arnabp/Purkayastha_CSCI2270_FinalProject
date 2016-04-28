@@ -45,8 +45,7 @@ Bracket::~Bracket()
 {
     destroyBracket();
     for(int i=0; i < playerList.size(); i++){
-        player * currentPlayer = &playerList[i];
-        delete currentPlayer;
+        playerList.pop_back();
     }
 }
 
@@ -56,7 +55,7 @@ void Bracket::createBracket(){
     int playerCount = playerList.size();
     round1Count = rowDifference(playerCount);
     int round2Players = playerCount - round1Count*2;
-    int round2Count = rowNumbers(round2Players);
+    round2Count = rowNumbers(round2Players);
     int additionalRounds = addRounds(round2Count);
     if(round1Count==0){
         round1Count = round2Count/2;
@@ -140,9 +139,9 @@ void Bracket::createBracket(){
     for(int k=1; k<sorter; k++){
         currentSecondary = currentSecondary->forwardMatch;
     }
-    cout<<currentMatch->matchnumber<<endl;
-    cout<<currentSecondary->matchnumber<<endl;
-    cout<<winnersmatch->matchnumber<<endl;
+    //cout<<currentMatch->matchnumber<<endl;
+    //cout<<currentSecondary->matchnumber<<endl;
+    //cout<<winnersmatch->matchnumber<<endl;
     while(winnersmatch->matchnumber <= totalMatches){
         if(currentMatch->matchnumber >= currentSecondary->matchnumber){
             for(int k=1; k<=sorter; k++){
@@ -155,7 +154,7 @@ void Bracket::createBracket(){
         }
         currentMatch->nextMatch = winnersmatch;
         currentSecondary->nextMatch = winnersmatch;
-        cout<<"Going from match #"<<currentMatch->matchnumber<<" and "<<currentSecondary->matchnumber<<" to match #"<<winnersmatch->matchnumber<<endl;
+        //cout<<"Going from match #"<<currentMatch->matchnumber<<" and "<<currentSecondary->matchnumber<<" to match #"<<winnersmatch->matchnumber<<endl;
         currentMatch = currentMatch->forwardMatch;
         currentSecondary = currentSecondary->backMatch;
         if(winnersmatch->matchnumber == totalMatches) break;
@@ -297,14 +296,14 @@ void Bracket::printRound(int roundNumb){
             currentMatch = currentMatch->forwardMatch;
         }
         roundNumb = roundNumb-2;
-        matches = totalMatches-round1Count;
+        matches = round2Count;
         for(i=0; i < roundNumb; i++){
             for(int j=0; j < matches; j++){
                 currentMatch = currentMatch->forwardMatch;
             }
             matches = matches/2;
         }
-        cout<<"Round #"<<i<<":"<<endl;
+        cout<<"Round #"<<i+2<<":"<<endl;
     }
     else{
         cout<<"Not a valid roundNumb"<<endl;
