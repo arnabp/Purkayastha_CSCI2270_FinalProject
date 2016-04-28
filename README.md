@@ -32,7 +32,5 @@ None
 
 ### Known Bugs
 
-- Currently the bracket deleter runs into a memory allocation issue, terminating the program. This does not interfere with the core program as termination only occurs when closing program.
 - Submitting result of player that does not exist will cause segmentation fault
 - Finding next matchup or specific matchup of players that do not exist will cause segmentation fault
-- Displaying round past first two rounds will sometimes display incorrect set of matches for the round.
