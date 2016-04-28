@@ -45,6 +45,7 @@ class Bracket
         std::vector<player> playerList;
         int totalMatches;
         int round1Count;
+        int round2Count;
         match *root;
         int rowDifference(int players);
         int rowNumbers(int players);
