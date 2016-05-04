@@ -189,42 +189,49 @@ void Bracket::printLineup(){
 
 void Bracket::submitResult(std::string playerWinner){
     match * currentMatch = findMatch(playerWinner);
-    while(currentMatch->p1->defeated || currentMatch->p2->defeated){
-        currentMatch = currentMatch->nextMatch;
-        if(!currentMatch->p1 || !currentMatch->p2){
-            cout<<"Next match is not ready yet"<<endl;
-            return;
-        }
-    }
-    player newPlayer;
-    newPlayer.defeated = false;
-    newPlayer.name = playerWinner;
-    int playerRank, fromMatch, toMatch;
-    if(currentMatch->p1->name == playerWinner){
-        playerRank = currentMatch->p1->pRank;
-        currentMatch->p2->defeated = true;
-    }
-    else{
-        playerRank = currentMatch->p2->pRank;
-        currentMatch->p1->defeated = true;
-    }
-    cout<<playerWinner<<" wins!"<<endl;
-    fromMatch = currentMatch->matchnumber;
-    if(currentMatch->nextMatch){
-        currentMatch = currentMatch->nextMatch;
-    }
-    else{
-        cout<<"Tournament has ended!"<<endl;
+    if(currentMatch == NULL)            //if match not found prints out "match not found" and then returns, stopping seg fault bug
+    {
         return;
     }
-    toMatch = currentMatch->matchnumber;
-    cout<<"Going from match #"<<fromMatch<<" to match #"<<toMatch<<endl;
-    if(currentMatch->p1){
-        currentMatch->p2 = &playerList[playerRank-1];
-    }
-    else{
-        currentMatch->p1 = &playerList[playerRank-1];
-    }
+    else
+    {
+        while(currentMatch->p1->defeated || currentMatch->p2->defeated){
+            currentMatch = currentMatch->nextMatch;
+            if(!currentMatch->p1 || !currentMatch->p2){
+                cout<<"Next match is not ready yet"<<endl;
+                return;
+            }
+        }
+        player newPlayer;
+        newPlayer.defeated = false;
+        newPlayer.name = playerWinner;
+        int playerRank, fromMatch, toMatch;
+        if(currentMatch->p1->name == playerWinner){
+            playerRank = currentMatch->p1->pRank;
+            currentMatch->p2->defeated = true;
+        }
+        else{
+            playerRank = currentMatch->p2->pRank;
+            currentMatch->p1->defeated = true;
+        }
+        cout<<playerWinner<<" wins!"<<endl;
+        fromMatch = currentMatch->matchnumber;
+        if(currentMatch->nextMatch){
+            currentMatch = currentMatch->nextMatch;
+        }
+        else{
+            cout<<"Tournament has ended!"<<endl;
+            return;
+        }
+        toMatch = currentMatch->matchnumber;
+        cout<<"Going from match #"<<fromMatch<<" to match #"<<toMatch<<endl;
+        if(currentMatch->p1){
+            currentMatch->p2 = &playerList[playerRank-1];
+        }
+        else{
+            currentMatch->p1 = &playerList[playerRank-1];
+        }
+    }	//end of check if/else statement to stop seg fault bug
 }
 
 void Bracket::printWinners(){
