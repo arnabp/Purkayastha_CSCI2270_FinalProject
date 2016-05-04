@@ -32,5 +32,5 @@ None
 
 ### Known Bugs
 
-- Submitting result of player that does not exist will cause segmentation fault
+- Deleting result of player that does not exist will cause segmentation fault
 - Finding next matchup or specific matchup of players that do not exist will cause segmentation fault
