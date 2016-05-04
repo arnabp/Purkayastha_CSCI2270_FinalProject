@@ -231,32 +231,38 @@ void Bracket::printWinners(){
     match * currentMatch = root;
     string first, second, third1, third2;
     while(currentMatch->nextMatch) currentMatch = currentMatch->nextMatch;
-    if(currentMatch->p1->defeated){
-        first = currentMatch->p2->name;
-        second = currentMatch->p1->name;
+    if(currentMatch->p1!=NULL and currentMatch->p2!=NULL){
+        if(currentMatch->p1->defeated){
+            first = currentMatch->p2->name;
+            second = currentMatch->p1->name;
+        }
+        else{
+            first = currentMatch->p1->name;
+            second = currentMatch->p2->name;
+        }
+        currentMatch = currentMatch->backMatch;
+        if(currentMatch->p1->name == first || currentMatch->p1->name == second){
+            third1 = currentMatch->p2->name;
+        }
+        else{
+            third1 = currentMatch->p1->name;
+        }
+        currentMatch = currentMatch->backMatch;
+        if(currentMatch->p1->name == first || currentMatch->p1->name == second){
+            third2 = currentMatch->p2->name;
+        }
+        else{
+            third2 = currentMatch->p1->name;
+        }
+        cout<<first<<" places in First Place."<<endl;
+        cout<<second<<" places in Second Place."<<endl;
+        cout<<third1<<" and "<<third2<<" tie for Third Place."<<endl;
     }
     else{
-        first = currentMatch->p1->name;
-        second = currentMatch->p2->name;
-    }
-    currentMatch = currentMatch->backMatch;
-    if(currentMatch->p1->name == first || currentMatch->p1->name == second){
-        third1 = currentMatch->p2->name;
-    }
-    else{
-        third1 = currentMatch->p1->name;
-    }
-    currentMatch = currentMatch->backMatch;
-    if(currentMatch->p1->name == first || currentMatch->p1->name == second){
-        third2 = currentMatch->p2->name;
-    }
-    else{
-        third2 = currentMatch->p1->name;
+        cout<<"The tournament is still in progress"<<endl;
     }
 
-    cout<<first<<" places in First Place."<<endl;
-    cout<<second<<" places in Second Place."<<endl;
-    cout<<third1<<" and "<<third2<<" tie for Third Place."<<endl;
+
 }
 
 match * Bracket::findMatch(std::string playerFind){
